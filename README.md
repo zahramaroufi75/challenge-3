@@ -178,7 +178,7 @@ The actual structure passed for the _addr_ argument will depend on the address f
 
 struct sockaddr {
 
-sa_family_t sa_family;
+sa_family_t  sa_family;
 
 char        sa_data[14];
 
