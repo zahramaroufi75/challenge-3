@@ -173,6 +173,16 @@ The server uses the __bind()__ system call to bind the socket to a well-known ad
 
 When a socket is created with socket(2), it exists in a name space (address family) but has no address assigned to it.  bind() assigns the address specified by addr to thsocket referred to by the file descriptor sockfd.  addrlen specifies the size, in bytes, of the address structure pointed to by addr.Traditionally, this operation is called “assigning a name to a socket”. It is normally necessary to assign a local address using bind() before a SOCK_STREAM socket may receive connections.
 
+The actual structure passed for the _addr_ argument will depend on the address family.  The sockaddr structure is defined as
+       something like:
+
+           struct sockaddr {
+               sa_family_t sa_family;
+               char        sa_data[14];
+           }
+
+       The only purpose of this structure is to cast the structure
+       pointer passed in addr in order to avoid compiler warnings.
 
 ```
 // Bind the socket to the address. Note that we're binding the server socket
