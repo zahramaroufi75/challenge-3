@@ -273,7 +273,7 @@ ________________________________________________________________________________
 
 After this, the __read()__ and __write()__ system calls can be used to communicate with the peer socket (i.e. to communicate with the client).
 
-__for read()__
+## for read():
 
 #include <unistd.h>
 
@@ -290,21 +290,18 @@ __RETURN VALUE__:  On success, the number of bytes read is returned (zero indica
 On error, -1 is returned, and errno is set to indicate the error. In this case, it is left unspecified whether the file position (if any) changes.
 
 
-__for write()__
+## for write():
 
 
 #include <unistd.h>
 
-ssize_t write(int _fd_ , const void _*buf_ , size_t  _count_);
+ssize_t write (int _fd_ , const void _*buf_ , size_t  _count_);
 
+The number of bytes written may be less than count if, for example, there is insufficient space on the underlying physical  medium, or the RLIMIT_FSIZE resource limit is encountered , or the call was interrupted by a signal handler after having written less than count bytes.
 
+__RETURN VALUE__ : On success, the number of bytes written is returned.  On error, -1 is returned, and errno is set to indicate the error.
 
-
-
-
-
-
-
+Note that a successful write() may transfer fewer than count bytes.  Such partial writes can occur for various reasons; for example, because there was insufficient space on the disk device to write all of the requested bytes, or because a blocked write() to a socket, pipe, or similar was interrupted by a signal handler after it had transferred some, but before it had transferred all of the requested bytes.  In the event of a partial write, the caller can make another write() call to transfer the remaining  bytes.  The subsequent call will either transfer further bytes or  may result in an error (e.g., if the disk is now full).
 
 So we will have in the server code:
 
@@ -320,7 +317,7 @@ So we will have in the server code:
 
 ```
 
-
+________________________________________________________________________________________________________________________________________________________________________________
 
 
 
