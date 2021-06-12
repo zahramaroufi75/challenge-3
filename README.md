@@ -164,6 +164,13 @@ ________________________________________________________________________________
   
 ```
 _______________________________________________________________________________________________________________________________________________________________________________
+The server uses the __bind()__ system call to bind the socket to a well-known address, so that the client can connect to it .
+
+ #include <sys/socket.h>
+ int bind (int sockfd, const struct sockaddr *addr, socklen_t addrlen);
+
+When a socket is created with socket(2), it exists in a name space (address family) but has no address assigned to it.  bind() assigns the address specified by addr to thsocket referred to by the file descriptor sockfd.  addrlen specifies the size, in bytes, of the address structure pointed to by addr.Traditionally, this operation is called “assigning a name to a socket”. It is normally necessary to assign a local address using bind() before a SOCK_STREAM socket may receive connections.
+
 
 ```
 // Bind the socket to the address. Note that we're binding the server socket
