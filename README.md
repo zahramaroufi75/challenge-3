@@ -121,6 +121,40 @@ So we will have in the server code:
   
 ```
 
+Using the following command, we Make sure that socket's file descriptor is legit.
+
+```
+if (sfd == -1) {
+    errExit("socket");
+  }
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
