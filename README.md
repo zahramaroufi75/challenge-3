@@ -372,6 +372,7 @@ int main(int argc, char *argv[]) {
 ### In the following, we will explain the different parts of the code provided for the client.
 ________________________________________________________________________________________________________________________________________________________________________________
 
+
 ![Image of Yaktocat](https://miro.medium.com/max/700/1*wKeN12uTZiYT1LVwvr5xmg.png)
 
 
