@@ -234,13 +234,42 @@ ________________________________________________________________________________
 
 The server calls the __accept()__ system call to accept an incoming connection. This call blocks until a connection request arrives. Note that this function will error out if listen() is not called beforehand. Importantly, this call creates a new socket that is connected to the peer socket and returns a file descriptor associated with it. So, if you want to communicate with the peer socket, you should use the file descriptor returned from accept(), not the file descriptor returned from the call to socket() . The latter socket remains open and is used to accept further connection requests.
 
+#include <sys/socket.h>
 
+int accept (int _sockfd_ , struct sockaddr *restrict _addr_ , socklen_t *restrict _addrlen_ );
 
+The accept() system call is used with connection-based socket types __(SOCK_STREAM, SOCK_SEQPACKET)__ .  It extracts the first connection request on the queue of pending connections for the listening socket, _sockfd_ , creates a new connected socket, and returns a new file descriptor referring to that socket.  The  newly created socket is not in the listening state.  The original  socket sockfd is unaffected by this call.
 
+The argument _sockfd_ is a socket that has been created with __socket()__ , bound to a local address with __bind()__ , and is listening for connections after a __listen()__.
 
+The argument _addr_ is a pointer to a sockaddr structure.  This structure is filled in with the address of the peer socket, as known to the communications layer.  The exact format of the address returned addr is determined by the socket's address family. When addr is NULL, nothing is filled in; in this case, addrlen is not used, and should also be NULL.
+ 
+The _addrlen_ argument is a value-result argument: the caller must initialize it to contain the size (in bytes) of the structure pointed to by addr; on return it will contain the actual size of the peer address.
 
+The returned address is truncated if the buffer provided is too small; in this case, addrlen will return a value greater than was supplied to the call.
 
+__RETURN VALUE__ :  On success, these system calls return a file descriptor for the  accepted socket (a nonnegative integer).  On error, -1 is returned, errno is set to  indicate the error, and addrlen is left unchanged.
 
+So we will have in the server code:
+
+```
+
+// Accept a connection. The connection is returned on a NEW
+// socket, 'cfd'; the listening socket ('sfd') remains open
+// and can be used to accept further connections. */
+
+    printf("Waiting to accept a connection...\n");
+    
+// NOTE: blocks until a connection request arrives.
+    int cfd = accept(sfd, NULL, NULL);
+    printf("Accepted socket fd = %d\n", cfd);
+
+//
+// Transfer data from connected socket to stdout until EOF */
+//
+    
+```
+________________________________________________________________________________________________________________________________________________________________________________
 
 
 
