@@ -15,3 +15,5 @@ Why do we need sockets? Well, because one process can’t normally talk to anoth
 
 ![Image of Yaktocat](https://miro.medium.com/max/9040/1*ekw1o4xE_7ew9kYh6tVkCA.png)
 
+
+Note: Each socket has two important attributes : a communication domain and a type. There are two main types, stream and datagram. In this post, I’m going to focus on the former. That is, I’m going to focus on streaming Unix domain sockets.
