@@ -177,21 +177,27 @@ When a socket is created with socket(), it exists in a name space (address famil
 The actual structure passed for the _addr_ argument will depend on the address family.  The sockaddr structure is defined as something like:
 
 struct sockaddr {
+
 sa_family_t sa_family;
+
 char        sa_data[14];
+
 }
 
- The only purpose of this structure is to cast the structure pointer passed in addr in order to avoid compiler warnings.
- On success, zero is returned.  On error, -1 is returned, and errno is set to indicate the error.
+The only purpose of this structure is to cast the structure pointer passed in addr in order to avoid compiler warnings.
+ 
+Finally, On success, zero is returned.  On error, -1 is returned, and errno is set to indicate the error.
  
  So we will have in the server code:
 
 ```
+
 // Bind the socket to the address. Note that we're binding the server socket
 // to a well-known address so that clients know where to connect.
   if (bind(sfd, (struct sockaddr *) &addr, sizeof(struct sockaddr_un)) == -1) {
     errExit("bind");
   }
+ 
  
 ```
 ________________________________________________________________________________________________________________________________________________________________________________
