@@ -106,9 +106,9 @@ The server creates a new socket using the __socket()__ system call. This returns
  
 Therefore socket() creates an endpoint for communication and returns a file descriptor that refers to that endpoint. The file descriptor returned by a successful call will be the lowest-numbered file descriptor not currently open for the process.
 
-The _domain_ argument specifies a communication domain; this selects the protocol family which will be used for communication. These families are defined in <sys/socket.h> ( In this case  _domain_ : __AF_UNIX__   with porpuse: Local communication)
+The _domain_ argument specifies a communication domain; this selects the protocol family which will be used for communication. These families are defined in <sys/socket.h> ( In this case  _domain_ : __AF_UNIX__   with porpuse: Local communication )
 
-The socket has the indicated _type_ , which specifies the communication semantics .(In this case  _type_ : __SOCK_STREAM__ Provides sequenced, reliable, two-way, connection-based byte streams.  An out of-band data transmission mechanism  may be supported.)
+The socket has the indicated _type_ , which specifies the communication semantics . (In this case  _type_ : __SOCK_STREAM__ provides sequenced, reliable, two-way, connection-based byte streams.  An out of-band data transmission mechanism  may be supported.)
 
 The _protocol_ specifies a particular protocol to be used with the socket.  Normally only a single protocol exists to support a particular socket type within a given protocol family, in which case protocol can be specified as 0.  However, it is possible that many protocols may exist, in which case a particular protocol must be specified in this manner.  The protocol number to use is specific to the “communication domain” in which  communication is to take place;
 
@@ -170,7 +170,7 @@ The server uses the __bind()__ system call to bind the socket to a well-known ad
 
  #include <sys/socket.h>
  
- int bind (int _sockfd_ , const struct sockaddr _*addr_, socklen_t _addrlen_);
+ int bind ( int _sockfd_ , const struct sockaddr _*addr_ , socklen_t _addrlen_ );
 
 When a socket is created with socket(), it exists in a name space (address family) but has no address assigned to it.  bind() assigns the address specified by _addr_ to the socket referred to by the file descriptor _sockfd_ . _addrlen_ specifies the size, in bytes, of the address structure pointed to by _addr_. Traditionally, this operation is called “assigning a name to a socket”. It is normally necessary to assign a local address using bind() before a SOCK_STREAM socket may receive connections.
 
@@ -206,7 +206,7 @@ The server calls the __listen()__ system call to mark the socket as passive, i.e
 
 #include <sys/socket.h>
 
-int listen (int _sockfd_ , int _backlog_);
+int listen ( int _sockfd_ , int _backlog_ );
 
 listen() marks the socket referred to by _sockfd_ as a passive socket, that is, as a socket that will be used to accept incoming connection requests using __accept()__.
 
