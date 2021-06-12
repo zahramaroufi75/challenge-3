@@ -271,9 +271,37 @@ So we will have in the server code:
 ```
 ________________________________________________________________________________________________________________________________________________________________________________
 
+After this, the __read()__ and __write()__ system calls can be used to communicate with the peer socket (i.e. to communicate with the client).
+
+
+#include <unistd.h>
+
+ssize_t read (int _fd_ , void _*buf_ , size_t _count_) ;
+
+__read()__ attempts to read up to count bytes from file descriptor _fd_  into the buffer starting at _buf_.
 
 
 
+
+
+
+
+
+
+
+So we will have in the server code:
+
+```
+
+ // Read at most BUF_SIZE bytes from the socket into buf.
+    while ((numRead = read(cfd, buf, BUF_SIZE)) > 0) {
+ // Then, write those bytes from buf into STDOUT.
+      if (write(STDOUT_FILENO, buf, numRead) != numRead) {
+        fatal("partial/failed write");
+      }
+    }
+
+```
 
 
 
