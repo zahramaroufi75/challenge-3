@@ -120,7 +120,7 @@ So we will have in the server code:
   printf("Server socket fd = %d\n", sfd);
   
 ```
-_____________________________________________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________________________________________________
 
 Using the following command, we make sure that socket's file descriptor is legit.
 
@@ -143,7 +143,7 @@ if (strlen(SV_SOCK_PATH) > sizeof(addr.sun_path) - 1) {
 ```
 
 
-_______________________________________________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________________________________________________
 
 
  Delete any file that already exists at the address. Make sure the deletion succeeds. If the error is just that the file/directory doesn't exist, it's fine.
@@ -154,7 +154,7 @@ ________________________________________________________________________________
   }
   
 ```
-_______________________________________________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________________________________________________
 
 ```
 // Zero out the address, and set family and path.
@@ -163,7 +163,7 @@ ________________________________________________________________________________
   strncpy(addr.sun_path, SV_SOCK_PATH, sizeof(addr.sun_path) - 1);
   
 ```
-_______________________________________________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________________________________________________
 
 The server uses the __bind()__ system call to bind the socket to a well-known address, so that the client can connect to it .
 
@@ -176,11 +176,10 @@ When a socket is created with socket(), it exists in a name space (address famil
 
 The actual structure passed for the _addr_ argument will depend on the address family.  The sockaddr structure is defined as something like:
 
-
-           struct sockaddr {
-               sa_family_t sa_family;
-               char        sa_data[14];
-           }
+struct sockaddr {
+sa_family_t sa_family;
+char        sa_data[14];
+}
 
  The only purpose of this structure is to cast the structure pointer passed in addr in order to avoid compiler warnings.
  On success, zero is returned.  On error, -1 is returned, and errno is set to indicate the error.
@@ -195,7 +194,7 @@ The actual structure passed for the _addr_ argument will depend on the address f
   }
  
 ```
-_______________________________________________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________________________________________________
 
 
 
