@@ -144,6 +144,17 @@ if (strlen(SV_SOCK_PATH) > sizeof(addr.sun_path) - 1) {
 
 
 
+ Delete any file that already exists at the address. Make sure the deletion succeeds. If the error is just that the file/directory doesn't exist, it's fine.
+ 
+```
+  if (remove(SV_SOCK_PATH) == -1 && errno != ENOENT) {
+    errExit("remove-%s", SV_SOCK_PATH);
+  }
+  
+```
+
+
+
 
 
 
