@@ -17,7 +17,7 @@ Why do we need sockets? Well, because one process can’t normally talk to anoth
 
 
 Note: Each socket has two important attributes : a communication domain and a type. There are two main types, stream and datagram. In this post, I’m going to focus on the former. That is, I’m going to focus on streaming Unix domain sockets.
-
+________________________________________________________________________________________________________________________________________________________________________________
 
 ## Server Code
 
@@ -95,7 +95,7 @@ int main(int argc, char *argv[]) {
 
 
 ### In the following, we will explain the different parts of the code provided for the server.
-
+________________________________________________________________________________________________________________________________________________________________________________
 
 The server creates a new socket using the __socket()__ system call. This returns a file descriptor that can be used to refer to the socket in future system calls .
 
@@ -319,25 +319,6 @@ So we will have in the server code:
 
 ________________________________________________________________________________________________________________________________________________________________________________
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Client Code
 
 ```
@@ -388,3 +369,45 @@ int main(int argc, char *argv[]) {
 }
 
 ```
+### In the following, we will explain the different parts of the code provided for the client.
+________________________________________________________________________________________________________________________________________________________________________________
+
+![Image of Yaktocat](https://miro.medium.com/max/700/1*wKeN12uTZiYT1LVwvr5xmg.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
