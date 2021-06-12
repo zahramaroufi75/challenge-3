@@ -94,7 +94,7 @@ int main(int argc, char *argv[]) {
 ```
 
 
-__In the following, we will explain the different parts of the code provided for the server.__
+### In the following, we will explain the different parts of the code provided for the server.
 
 
 The server creates a new socket using the __socket()__ system call. This returns a file descriptor that can be used to refer to the socket in future system calls .
@@ -121,7 +121,7 @@ So we will have in the server code:
   
 ```
 
-Using the following command, we Make sure that socket's file descriptor is legit.
+Using the following command, we make sure that socket's file descriptor is legit.
 
 ```
 if (sfd == -1) {
@@ -131,7 +131,14 @@ if (sfd == -1) {
 ```
 
 
+Using the following command, we make sure the address we're planning to use isn't too long.
 
+```
+if (strlen(SV_SOCK_PATH) > sizeof(addr.sun_path) - 1) {
+    fatal("Server socket path too long: %s", SV_SOCK_PATH);
+  }
+  
+```
 
 
 
