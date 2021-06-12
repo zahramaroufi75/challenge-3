@@ -232,7 +232,7 @@ So we will have in the server code:
   ```
 ________________________________________________________________________________________________________________________________________________________________________________
 
-
+The server calls the __accept()__ system call to accept an incoming connection. This call blocks until a connection request arrives. Note that this function will error out if listen() is not called beforehand. Importantly, this call creates a new socket that is connected to the peer socket and returns a file descriptor associated with it. So, if you want to communicate with the peer socket, you should use the file descriptor returned from accept(), not the file descriptor returned from the call to socket() . The latter socket remains open and is used to accept further connection requests.
 
 
 
