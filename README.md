@@ -186,7 +186,7 @@ char        sa_data[14];
 
 The only purpose of this structure is to cast the structure pointer passed in addr in order to avoid compiler warnings.
  
-Finally, On success, zero is returned.  On error, -1 is returned, and errno is set to indicate the error.
+__RETURN VALUE__ :  On success, zero is returned.  On error, -1 is returned, and errno is set to indicate the error.
  
  So we will have in the server code:
 
@@ -202,8 +202,35 @@ Finally, On success, zero is returned.  On error, -1 is returned, and errno is s
 ```
 ________________________________________________________________________________________________________________________________________________________________________________
 
+The server calls the __listen()__ system call to mark the socket as passive, i.e. as a socket that will accept incoming connection requests.
+
+#include <sys/socket.h>
+
+int listen (int _sockfd_ , int _backlog_);
+
+listen() marks the socket referred to by _sockfd_ as a passive socket, that is, as a socket that will be used to accept incoming connection requests using __accept()__.
+
+The _sockfd_ argument is a file descriptor that refers to a socket of _type_ SOCK_STREAM or SOCK_SEQPACKET.
+
+The _backlog_ argument defines the maximum length to which the queue of pending connections for sockfd may grow.  If a connection request arrives when the queue is full, the client may receive an error with an indication of ECONNREFUSED or, if the underlying protocol supports retransmission, the request may be ignored so that a later reattempt at connection succeeds.
 
 
+__RETURN VALUE__ : On success, zero is returned.  On error, -1 is returned, and errno is set to indicate the error.
+
+So we will have in the server code:
+ 
+```
+
+// The listen call marks the socket as *passive*. The socket will subsequently
+  // be used to accept connections from *active* sockets.
+  // listen cannot be called on a connected socket (a socket on which a connect()
+  // has been succesfully performed or a socket returned by a call to accept()).
+  if (listen(sfd, BACKLOG) == -1) {
+    errExit("listen");
+  }
+  
+  ```
+________________________________________________________________________________________________________________________________________________________________________________
 
 
 
