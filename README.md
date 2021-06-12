@@ -94,6 +94,41 @@ int main(int argc, char *argv[]) {
 ```
 
 
+In the following, we will explain the different parts of the code provided for the server.
+
+
+The server creates a new socket using the __socket()__ system call. This returns a file descriptor that can be used to refer to the socket in future system calls .
+
+
+ #include <sys/socket.h>
+ 
+ int socket(int domain, int type, int protocol);
+ 
+Therefore socket() creates an endpoint for communication and returns a file descriptor that refers to that endpoint. The file descriptor returned by a successful call will be the lowest-numbered file descriptor not currently open for the process.
+
+The __domain__ argument specifies a communication domain; this selects the protocol family which will be used for communication. These families are defined in <sys/socket.h>.
+The socket has the indicated __type__ , which specifies the communication semantics 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
