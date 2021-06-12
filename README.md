@@ -222,9 +222,9 @@ So we will have in the server code:
 ```
 
 // The listen call marks the socket as *passive*. The socket will subsequently
-  // be used to accept connections from *active* sockets.
-  // listen cannot be called on a connected socket (a socket on which a connect()
-  // has been succesfully performed or a socket returned by a call to accept()).
+// be used to accept connections from *active* sockets.
+// listen cannot be called on a connected socket (a socket on which a connect()
+// has been succesfully performed or a socket returned by a call to accept()).
   if (listen(sfd, BACKLOG) == -1) {
     errExit("listen");
   }
