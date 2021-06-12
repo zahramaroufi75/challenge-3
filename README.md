@@ -120,6 +120,7 @@ So we will have in the server code:
   printf("Server socket fd = %d\n", sfd);
   
 ```
+_____________________________________________________________________________________________________________________________________________________________________________
 
 Using the following command, we make sure that socket's file descriptor is legit.
 
@@ -130,6 +131,7 @@ if (sfd == -1) {
 
 ```
 
+________________________________________________________________________________________________________________________________________________________________________________
 
 Using the following command, we make sure the address we're planning to use isn't too long.
 
@@ -141,7 +143,7 @@ if (strlen(SV_SOCK_PATH) > sizeof(addr.sun_path) - 1) {
 ```
 
 
-
+_______________________________________________________________________________________________________________________________________________________________________________
 
 
  Delete any file that already exists at the address. Make sure the deletion succeeds. If the error is just that the file/directory doesn't exist, it's fine.
@@ -152,10 +154,25 @@ if (strlen(SV_SOCK_PATH) > sizeof(addr.sun_path) - 1) {
   }
   
 ```
+_______________________________________________________________________________________________________________________________________________________________________________
 
+```
+// Zero out the address, and set family and path.
+  memset(&addr, 0, sizeof(struct sockaddr_un));
+  addr.sun_family = AF_UNIX;
+  strncpy(addr.sun_path, SV_SOCK_PATH, sizeof(addr.sun_path) - 1);
+  
+```
+_______________________________________________________________________________________________________________________________________________________________________________
 
-
-
+```
+// Bind the socket to the address. Note that we're binding the server socket
+  // to a well-known address so that clients know where to connect.
+  if (bind(sfd, (struct sockaddr *) &addr, sizeof(struct sockaddr_un)) == -1) {
+    errExit("bind");
+  }
+ 
+```
 
 
 
