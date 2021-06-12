@@ -94,7 +94,7 @@ int main(int argc, char *argv[]) {
 ```
 
 
-In the following, we will explain the different parts of the code provided for the server.
+__In the following, we will explain the different parts of the code provided for the server.__
 
 
 The server creates a new socket using the __socket()__ system call. This returns a file descriptor that can be used to refer to the socket in future system calls .
@@ -106,8 +106,20 @@ The server creates a new socket using the __socket()__ system call. This returns
  
 Therefore socket() creates an endpoint for communication and returns a file descriptor that refers to that endpoint. The file descriptor returned by a successful call will be the lowest-numbered file descriptor not currently open for the process.
 
-The __domain__ argument specifies a communication domain; this selects the protocol family which will be used for communication. These families are defined in <sys/socket.h>.
-The socket has the indicated __type__ , which specifies the communication semantics 
+The __domain__ argument specifies a communication domain; this selects the protocol family which will be used for communication. These families are defined in <sys/socket.h>.( In this case  domain: __AF_UNIX__   with porpuse: Local communication)
+
+The socket has the indicated __type__ , which specifies the communication semantics .(In this case  type: __SOCK_STREAM__ Provides sequenced, reliable, two-way, connection-based byte streams.  An out of-band data transmission mechanism  may be supported.)
+
+The __protocol__ specifies a particular protocol to be used with the socket.  Normally only a single protocol exists to support a particular socket type within a given protocol family, in which case protocol can be specified as 0.  However, it is possible that many protocols may exist, in which case a particular protocol must be specified in this manner.  The protocol number to use is specific to the “communication domain” in which  communication is to take place;
+
+So we will have in the server code:
+
+```
+// Create a new server socket with domain: AF_UNIX, type: SOCK_STREAM, protocol: 0
+  int sfd = socket(AF_UNIX, SOCK_STREAM, 0);
+  printf("Server socket fd = %d\n", sfd);
+  
+```
 
 
 
