@@ -473,6 +473,11 @@ Similar to the descriptions for __read()__ and __write()__ in the server code, w
 ________________________________________________________________________________________________________________________________________________________________________________
 
 
+## Conclusion
+
+__.__ The first, unix_server_socket.c, creates a passive socket and accepts connections. For each connection, it will read from the socket and echo the results into STDOUT.
+The second, unix_client_socket.c, creates an active socket and connects to the passive socket created by unix_server_socket.c. After connecting, it reads from STDIN and writes to the socket.
+
 ![Image of Yaktocat](https://miro.medium.com/max/700/1*wKeN12uTZiYT1LVwvr5xmg.png)
 
 
