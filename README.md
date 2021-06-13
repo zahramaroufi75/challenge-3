@@ -319,6 +319,10 @@ So we will have in the server code:
         fatal("partial/failed write");
       }
     }
+    
+     if (numRead == -1) {
+      errExit("read");
+    }
 
 ```
 
@@ -327,8 +331,8 @@ ________________________________________________________________________________
 Finally, when the server is done with the socket, it should call close().
 
 ```
- if (numRead == -1) {
-      errExit("read");
+if (close(cfd) == -1) {
+      errMsg("close");
     }
     
 ```
@@ -447,6 +451,24 @@ So we will have in the client code:
 
 ________________________________________________________________________________________________________________________________________________________________________________
 
+Similar to the descriptions for __read()__ and __write()__ in the server code, we have :
+
+
+```
+
+ // Copy stdin to socket.
+ // Read at most BUF_SIZE bytes from STDIN into buf.
+    while ((numRead = read(STDIN_FILENO, buf, BUF_SIZE)) > 0) {
+      // Then, write those bytes from buf into the socket.
+      if (write(sfd, buf, numRead) != numRead) {
+        fatal("partial/failed write");
+      }
+    }
+
+    if (numRead == -1) {
+      errExit("read");
+    }
+```
 
 ________________________________________________________________________________________________________________________________________________________________________________
 
