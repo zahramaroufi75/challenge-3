@@ -19,6 +19,11 @@ Why do we need sockets? Well, because one process can’t normally talk to anoth
 Note: Each socket has two important attributes : a communication domain and a type. There are two main types, stream and datagram. In this post, I’m going to focus on the former. That is, I’m going to focus on streaming Unix domain sockets.
 ________________________________________________________________________________________________________________________________________________________________________________
 
+# Server Process (AKA the server)
+
+This process binds its socket to a known location and accepts incoming connection requests from clients. For each connection request that is received, a new socket is created that is used to communicate with the peer socket (peer socket = the socket at the other end of the connection, in this case the socket created by some client process).
+
+
 ## Server Code
 
 ```
@@ -319,6 +324,21 @@ So we will have in the server code:
 
 ________________________________________________________________________________________________________________________________________________________________________________
 
+Finally, when the server is done with the socket, it should call close().
+
+```
+ if (numRead == -1) {
+      errExit("read");
+    }
+    
+```
+________________________________________________________________________________________________________________________________________________________________________________
+
+# Client Process (AKA the client)
+This process connects its socket to a passive socket, after which it is free to communicate with the peer socket. Again, note that these two sockets — the passive socket and the peer socket — are different. The former is the one created by calling socket(), the latter is the one returned by calling accept() in the server code.
+
+
+
 ## Client Code
 
 ```
@@ -370,6 +390,64 @@ int main(int argc, char *argv[]) {
 
 ```
 ### In the following, we will explain the different parts of the code provided for the client.
+________________________________________________________________________________________________________________________________________________________________________________
+
+This is the same as server code,  the process creates a new socket using the socket() system call, which returns a file descriptor that can be used to refer to the socket in future system calls. Note that by default, a socket created using socket() is marked as active, and can be used in a connect() call to connect to a passive socket.
+
+So, similar to server code, we will have
+
+```
+// Create a new client socket with domain: AF_UNIX, type: SOCK_STREAM, protocol: 0
+    int sfd = socket(AF_UNIX, SOCK_STREAM, 0);
+    printf("Client socket fd = %d\n", sfd);
+
+// Make sure socket's file descriptor is legit.
+    if (sfd == -1) {
+      errExit("socket");
+    }
+  
+  ``` 
+________________________________________________________________________________________________________________________________________________________________________________
+
+
+```
+// Construct server address, and make the connection.
+    
+    memset(&addr, 0, sizeof(struct sockaddr_un));
+    addr.sun_family = AF_UNIX;
+    strncpy(addr.sun_path, SV_SOCK_PATH, sizeof(addr.sun_path) - 1);
+```
+________________________________________________________________________________________________________________________________________________________________________________
+
+The client calls the connect() system call, which connects to a passive socket. Remember that the server bound its socket to a well-known address — this is the address that should be used for connect(). Note that connect() should be called after listen() is called on the server socket, otherwise it will error. However, it can be called before accept().
+
+#include <sys/socket.h>
+
+int connect (int _sockfd_ , const struct sockaddr _*addr_ , socklen_t _addrlen_);
+
+The connect() system call connects the socket referred to by the file descriptor _sockfd_ to the address specified by _addr_ .  The addrlen argument specifies the size of _addr_ . The format of the address in _addr_ is determined by the address space of the socket _sockfd_ ;
+
+If the socket _sockfd_ is of type SOCK_DGRAM, then _addr_ is the address to which datagrams are sent by default, and the only address from which datagrams are received.  If the socket is of type SOCK_STREAM or SOCK_SEQPACKET, this call attempts to make a connection to the socket that is bound to the address specified by _addr_.
+
+__RETURN VALUE__: If the connection or binding succeeds, zero is returned. On error, -1 is returned, and errno is set to indicate the error.
+
+So we will have in the client code:
+
+
+```
+
+ // Connects the active socket referred to be sfd to the listening socket
+ // whose address is specified by addr.
+    if (connect(sfd, (struct sockaddr *) &addr,
+                sizeof(struct sockaddr_un)) == -1) {
+      errExit("connect");
+    }
+
+```
+
+________________________________________________________________________________________________________________________________________________________________________________
+
+
 ________________________________________________________________________________________________________________________________________________________________________________
 
 
