@@ -269,9 +269,6 @@ So we will have in the server code:
     int cfd = accept(sfd, NULL, NULL);
     printf("Accepted socket fd = %d\n", cfd);
 
-//
-// Transfer data from connected socket to stdout until EOF */
-//
     
 ```
 ________________________________________________________________________________________________________________________________________________________________________________
@@ -311,8 +308,11 @@ Note that a successful write() may transfer fewer than count bytes.  Such partia
 So we will have in the server code:
 
 ```
+//
+// Transfer data from connected socket to stdout until EOF */
+//
 
- // Read at most BUF_SIZE bytes from the socket into buf.
+// Read at most BUF_SIZE bytes from the socket into buf.
     while ((numRead = read(cfd, buf, BUF_SIZE)) > 0) {
  // Then, write those bytes from buf into STDOUT.
       if (write(STDOUT_FILENO, buf, numRead) != numRead) {
@@ -413,7 +413,6 @@ So, similar to server code, we will have
   ``` 
 ________________________________________________________________________________________________________________________________________________________________________________
 
-
 ```
 // Construct server address, and make the connection.
     
@@ -455,11 +454,13 @@ Similar to the descriptions for __read()__ and __write()__ in the server code, w
 
 
 ```
+//
+// Copy stdin to socket.
+// 
 
- // Copy stdin to socket.
- // Read at most BUF_SIZE bytes from STDIN into buf.
+// Read at most BUF_SIZE bytes from STDIN into buf.
     while ((numRead = read(STDIN_FILENO, buf, BUF_SIZE)) > 0) {
-      // Then, write those bytes from buf into the socket.
+// Then, write those bytes from buf into the socket.
       if (write(sfd, buf, numRead) != numRead) {
         fatal("partial/failed write");
       }
