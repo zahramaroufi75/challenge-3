@@ -17,7 +17,7 @@ Why do we need sockets? Well, because one process can’t normally talk to anoth
 
 
 Note: Each socket has two important attributes : a communication domain and a type. There are two main types, stream and datagram. In this post, I’m going to focus on the former. That is, I’m going to focus on streaming Unix domain sockets.
-________________________________________________________________________________________________________________________________________________________________________________
+__________________________________________________________________________________________________________________________________________________________________
 
 # Server Process (AKA the server)
 
@@ -100,7 +100,7 @@ int main(int argc, char *argv[]) {
 
 
 ### In the following, we will explain the different parts of the code provided for the server.
-________________________________________________________________________________________________________________________________________________________________________________
+__________________________________________________________________________________________________________________________________________________________________
 
 The server creates a new socket using the __socket()__ system call. This returns a file descriptor that can be used to refer to the socket in future system calls .
 
@@ -125,7 +125,7 @@ So we will have in the server code:
   printf("Server socket fd = %d\n", sfd);
   
 ```
-________________________________________________________________________________________________________________________________________________________________________________
+__________________________________________________________________________________________________________________________________________________________________
 
 Using the following command, we make sure that socket's file descriptor is legit.
 
@@ -148,7 +148,7 @@ if (strlen(SV_SOCK_PATH) > sizeof(addr.sun_path) - 1) {
 ```
 
 
-________________________________________________________________________________________________________________________________________________________________________________
+__________________________________________________________________________________________________________________________________________________________________
 
 
  Delete any file that already exists at the address. Make sure the deletion succeeds. If the error is just that the file/directory doesn't exist, it's fine.
@@ -394,7 +394,7 @@ int main(int argc, char *argv[]) {
 
 ```
 ### In the following, we will explain the different parts of the code provided for the client.
-________________________________________________________________________________________________________________________________________________________________________________
+__________________________________________________________________________________________________________________________________________________________________
 
 This is the same as server code,  the process creates a new socket using the socket() system call, which returns a file descriptor that can be used to refer to the socket in future system calls. Note that by default, a socket created using socket() is marked as active, and can be used in a connect() call to connect to a passive socket.
 
@@ -411,7 +411,7 @@ So, similar to server code, we will have
     }
   
   ``` 
-________________________________________________________________________________________________________________________________________________________________________________
+__________________________________________________________________________________________________________________________________________________________________
 
 ```
 // Construct server address, and make the connection.
@@ -420,7 +420,7 @@ ________________________________________________________________________________
     addr.sun_family = AF_UNIX;
     strncpy(addr.sun_path, SV_SOCK_PATH, sizeof(addr.sun_path) - 1);
 ```
-________________________________________________________________________________________________________________________________________________________________________________
+__________________________________________________________________________________________________________________________________________________________________
 
 The client calls the connect() system call, which connects to a passive socket. Remember that the server bound its socket to a well-known address — this is the address that should be used for connect(). Note that connect() should be called after listen() is called on the server socket, otherwise it will error. However, it can be called before accept().
 
@@ -448,7 +448,7 @@ So we will have in the client code:
 
 ```
 
-________________________________________________________________________________________________________________________________________________________________________________
+__________________________________________________________________________________________________________________________________________________________________
 
 Similar to the descriptions for __read()__ and __write()__ in the server code, we have :
 
@@ -473,7 +473,7 @@ Similar to the descriptions for __read()__ and __write()__ in the server code, w
 
 __________________________________________________________________________________________________________________________________________________________________
 
-![GitHub Logo](/home/zeinab/Pictures/Screenshot from 2021-06-15 18-44-52.png)
+![Image of Yaktocat](/home/zeinab/Pictures/Screenshot from 2021-06-15 18-44-52.png)
 
 
 
