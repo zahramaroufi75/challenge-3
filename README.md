@@ -473,7 +473,7 @@ Similar to the descriptions for __read()__ and __write()__ in the server code, w
 
 __________________________________________________________________________________________________________________________________________________________________
 
-![GitHub Logo](Screenshot from 2021-06-15 18-44-52.png)
+/home/zeinab/Pictures/Screenshot from 2021-06-15 18-44-52.png
 
 
 
