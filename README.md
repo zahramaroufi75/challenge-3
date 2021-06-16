@@ -485,7 +485,7 @@ for client:
 ```
 gcc unix_server.c lib/error_function.c -o clinet
 ```
-after -o write name of output file and than run output file in terminal with below command : 
+after -o write name of output file and then run output file in terminal with below command : 
 ```
 ./client
 ./server
