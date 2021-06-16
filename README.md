@@ -478,18 +478,22 @@ ________________________________________________________________________________
 
 First, run the server. The server will create a passive socket and start listening for incoming connection requests.
 
- ![Screenshot from 2021-06-16 12-07-33_server](https://user-images.githubusercontent.com/85158407/122185242-2ecad280-cea2-11eb-9eca-03f5fedb8e16.png)
+![Screenshot from 2021-06-16 12-07-33_server](https://user-images.githubusercontent.com/85158407/122190895-7ef86380-cea7-11eb-8127-ce35928f7135.png)
+
 
 
 
 Then, run the client — this will connect to the passive socket. After that, you can type input into the client’s terminal. When you press enter, it should be echoed on the server’s terminal window.
 
-![Alt text](/home/zeinab/Pictures/Screenshot from 2021-06-16 12-09-45_client.png)
+
+![Screenshot from 2021-06-16 12-09-45_client](https://user-images.githubusercontent.com/85158407/122190900-80299080-cea7-11eb-902b-6bed45d4ddb4.png)
+
+
 
 
 Finally,we will have:
 
-![Alt text](/home/zeinab/Pictures/Screenshot from 2021-06-16 12-10-29_server_client.png)
+![Screenshot from 2021-06-16 12-10-29_server_client](https://user-images.githubusercontent.com/85158407/122190906-80c22700-cea7-11eb-8168-f834f67e4a04.png)
 
 
 
