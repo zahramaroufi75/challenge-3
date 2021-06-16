@@ -476,7 +476,7 @@ Similar to the descriptions for __read()__ and __write()__ in the server code, w
 _______________________________________________________________________________________________________________________________________________________________________________
 # Running the Codes
 
-open terminal in ubuntu and compile c++ file with below command ,
+open terminal in ubuntu and compile c file with below command ,
 for server:
 ```
 gcc unix_server.c lib/error_function.c -o server
