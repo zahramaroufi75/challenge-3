@@ -479,7 +479,7 @@ ________________________________________________________________________________
 First, run the server. The server will create a passive socket and start listening for incoming connection requests.
 
 <img 
-  scr="images/Sub Pronouns.jpg"
+  scr="/home/zeinab/Pictures/Screenshot from 2021-06-16 12-07-33_server.png"
   raw=true     
 alt="Subject Pronouns"
 style="margin-right:10px;"
