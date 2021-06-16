@@ -476,6 +476,22 @@ Similar to the descriptions for __read()__ and __write()__ in the server code, w
 _______________________________________________________________________________________________________________________________________________________________________________
 # Running the Codes
 
+open terminal in ubuntu  and compile code in c++ file with below command ,
+for server:
+```
+gcc unix_server.c lib/error_function.c -o server
+```
+for client:
+```
+gcc unix_server.c lib/error_function.c -o clinet
+```
+after -o write name of output file and than run output file in terminal with below command : 
+```
+./client
+./server
+
+```
+
 First, run the server. The server will create a passive socket and start listening for incoming connection requests.
 
 ![Screenshot from 2021-06-16 12-07-33_server](https://user-images.githubusercontent.com/85158407/122190895-7ef86380-cea7-11eb-8127-ce35928f7135.png)
