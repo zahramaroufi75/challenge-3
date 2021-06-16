@@ -489,7 +489,6 @@ after -o write name of output file and than run output file in terminal with bel
 ```
 ./client
 ./server
-
 ```
 
 First, run the server. The server will create a passive socket and start listening for incoming connection requests.
