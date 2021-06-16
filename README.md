@@ -478,17 +478,26 @@ ________________________________________________________________________________
 
 First, run the server. The server will create a passive socket and start listening for incoming connection requests.
 
-![plot](/home/zeinab/Pictures/Screenshot from 2021-06-16 12-07-33_server.png)
+<img 
+  scr="images/Sub Pronouns.jpg"
+  raw=true     
+alt="Subject Pronouns"
+style="margin-right:10px;"
+     />
+     
+     
+     
+![Alt text]()
 
 
 Then, run the client — this will connect to the passive socket. After that, you can type input into the client’s terminal. When you press enter, it should be echoed on the server’s terminal window.
 
-![plot](/home/zeinab/Pictures/Screenshot from 2021-06-16 12-09-45_client.png)
+![Alt text](/home/zeinab/Pictures/Screenshot from 2021-06-16 12-09-45_client.png)
 
 
 Finally,we will have:
 
-![plot](/home/zeinab/Pictures/Screenshot from 2021-06-16 12-10-29_server_client.png)
+![Alt text](/home/zeinab/Pictures/Screenshot from 2021-06-16 12-10-29_server_client.png)
 
 
 
