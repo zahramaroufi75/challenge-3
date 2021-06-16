@@ -1,3 +1,4 @@
+![Screenshot from 2021-06-16 12-07-33_server](https://user-images.githubusercontent.com/85158407/122185242-2ecad280-cea2-11eb-9eca-03f5fedb8e16.png)
 # Getting Started With Unix Domain Sockets
 
 
@@ -478,14 +479,7 @@ ________________________________________________________________________________
 
 First, run the server. The server will create a passive socket and start listening for incoming connection requests.
 
-<img 
-  scr="/home/zeinab/Pictures/Screenshot from 2021-06-16 12-07-33_server.png"
-  raw=true     
-alt="Subject Pronouns"
-style="margin-right:10px;"
-     />
-     
-     
+  
      
 ![Alt text]()
 
