@@ -479,11 +479,11 @@ ________________________________________________________________________________
 open terminal in ubuntu and compile c file with below command ,
 for server:
 ```
-gcc unix_server.c lib/error_function.c -o server
+gcc unix_server_socket.c lib/error_functions.c -o server
 ```
 for client:
 ```
-gcc unix_server.c lib/error_function.c -o clinet
+gcc unix_client_socket.c lib/error_functions.c -o clinet
 ```
 after -o write name of output file and then run output file in terminal with below command : 
 ```
