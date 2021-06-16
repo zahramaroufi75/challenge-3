@@ -299,6 +299,8 @@ On error, -1 is returned, and errno is set to indicate the error. In this case, 
 
 ssize_t write (int _fd_ , const void _*buf_ , size_t  _count_);
 
+ __write()__ writes up to _count_ bytes from the buffer starting at _buf_ to the file referred to by the file descriptor _fd_.
+
 The number of bytes written may be less than count if, for example, there is insufficient space on the underlying physical  medium, or the RLIMIT_FSIZE resource limit is encountered , or the call was interrupted by a signal handler after having written less than count bytes.
 
 __RETURN VALUE__ : On success, the number of bytes written is returned.  On error, -1 is returned, and errno is set to indicate the error.
@@ -471,12 +473,22 @@ Similar to the descriptions for __read()__ and __write()__ in the server code, w
     }
 ```
 
-__________________________________________________________________________________________________________________________________________________________________
+_______________________________________________________________________________________________________________________________________________________________________________
+# Running the Codes
+
+First, run the server. The server will create a passive socket and start listening for incoming connection requests.
 
 ![Image of Yaktocat](/home/zeinab/Pictures/Screenshot from 2021-06-15 18-44-52.png)
 
 
+Then, run the client — this will connect to the passive socket. After that, you can type input into the client’s terminal. When you press enter, it should be echoed on the server’s terminal window.
 
+
+
+
+
+
+________________________________________________________________________________________________________________________________________________________________________________
 
 
 ## Conclusion
@@ -486,41 +498,4 @@ __•__ The first, unix_server_socket.c, creates a passive socket and accepts co
 __•__ The second, unix_client_socket.c, creates an active socket and connects to the passive socket created by unix_server_socket.c. After connecting, it reads from STDIN and writes to the socket.
 
 ![Image of Yaktocat](https://miro.medium.com/max/700/1*wKeN12uTZiYT1LVwvr5xmg.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
